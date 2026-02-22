@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Send Message</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #111;
+      font-family: Arial;
+      color: white;
+    }
+
+    .box {
+      text-align: center;
+    }
+
+    input {
+      padding: 10px;
+      width: 250px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Send message to owner</h2>
+  <input type="text" id="message" placeholder="Type your message">
+  <br>
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+async function sendMessage() {
+  const message = document.getElementById("message").value;
+
+  if (!message) {
+    alert("Please enter a message");
+    return;
+  }
+
+  await fetch("https://DEIN-VERCEL-PROJEKT.vercel.app/api/send", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message })
+  });
+
+  alert("Message sent!");
+}
+</script>
+
+</body>
+</html>
